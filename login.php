@@ -23,7 +23,7 @@ if (isset($_POST['btn-login'])) {
 
 		if($row['status']==$active)
 		{
-			echo 'you already login to a one system...!';
+			echo '<div>you already login to a one system...! Please click <a href="logout.php" >here to Logout</a></div>' ;
 		}
 		else {
 		$sql1="UPDATE `users` SET `status` = 'active' WHERE `users`.`email` = '$email'";

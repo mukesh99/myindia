@@ -13,7 +13,7 @@ if (!isset($_SESSION['user'])) {
 
 if (isset($_GET['logout'])) {
 	//$inactive='inactive';
-		$sql1="UPDATE `users` SET `status` = 'inactive' WHERE `users`.`email` = '$_SESSION['user']'";
+		$sql1="UPDATE `users` SET `status` = 'inactive' WHERE `users`.`id` = '$_SESSION['user']'";
 		$res1=mysqli_query($conn, $sql1);
     session_destroy();
     unset($_SESSION['user']);
