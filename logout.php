@@ -1,23 +1,25 @@
 <?php
+ob_start();
 session_start();
+require 'dbconnect.php';
 
-if (!isset($_SESSION['user'])) {
-    header("Location: login.php");
-	session_destroy();
-	exit;
-} else if (isset($_SESSION['user']) != "") {
-    header("Location: login.php");
-	session_destroy();
-	exit;
-}
+echo $_SESSION['user'] . '<br>';
 
-if (isset($_GET['logout'])) {
+	$id = $_SESSION['user'];
+	echo $sql1="UPDATE `users` SET `status` = 'inactive' WHERE `users`.`id` = $id";
+	
+if(isset($_SESSION['user']) && $_SESSION['user'] != "") {
+	echo '<br>This inside';
 	$id = $_SESSION['user'];
 	$sql1="UPDATE `users` SET `status` = 'inactive' WHERE `users`.`id` = $id";
-	$res1=mysqli_query($conn, $sql1);
-    session_destroy();
-    unset($_SESSION['user']);
-	unset($_SESSION['user_type']);
-   // header("Location: login.php");
-    exit;
+	//$res1=mysqli_query($conn, $sql1);
 }
+else
+{
+	// header("Location: login.php");
+}
+
+/* session_destroy();
+unset($_SESSION['user']);
+unset($_SESSION['user_type']);
+exit; */
